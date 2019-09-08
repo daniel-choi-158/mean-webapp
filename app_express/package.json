@@ -1,0 +1,13 @@
+{
+  "name": "app_express",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "./index.js",
+  "scripts": {
+    "dev": "nodemon ./index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}
