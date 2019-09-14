@@ -1,0 +1,73 @@
+<mat-card>
+  <form (submit)="onAddTransaction(postTransaction)" #postTransaction="ngForm">
+      <mat-form-field>
+          <input
+          matInput
+          type="text"
+          name="actionType"
+          placeholder="Action type"
+          ngModel
+          required
+          #actionType="ngModel">
+          <mat-error *ngIf="actionType.invalid">Please enter valid input.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea
+          matInput
+          type="text"
+          name="shares"
+          placeholder="Number of shares"
+          ngModel
+          required
+          #shares="ngModel"></textarea>
+          <mat-error *ngIf="shares.invalid">Please enter valid input.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea
+          matInput
+          type="text"
+          name="price"
+          placeholder="Price"
+          ngModel
+          required
+          #price="ngModel"></textarea>
+          <mat-error *ngIf="price.invalid">Please enter valid input.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea
+          matInput
+          type="text"
+          name="date"
+          placeholder="Date"
+          ngModel
+          required
+          #date="ngModel"></textarea>
+          <mat-error *ngIf="date.invalid">Please enter valid input.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea
+          matInput
+          type="text"
+          name="commissions"
+          placeholder="Commissions paid"
+          ngModel
+          required
+          #commissions="ngModel"></textarea>
+          <mat-error *ngIf="commissions.invalid">Please enter valid input.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea
+          matInput
+          type="text"
+          name="description"
+          placeholder="Description of transaction"
+          ngModel
+          #description="ngModel"></textarea>
+          <mat-error *ngIf="description.invalid">Please enter valid input.</mat-error>
+        </mat-form-field>
+        <button
+        mat-raised-button
+        color="accent"
+        type="submit">Save Transaction</button>
+  </form>
+</mat-card>

@@ -51,7 +51,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
   
 
-//routes
+//declare routes
 const indexRouter = require('./app_server/routes/index');
 const dashboardRouter = require('./app_server/routes/dashboard');
 const loginRouter = require('./app_server/routes/login');

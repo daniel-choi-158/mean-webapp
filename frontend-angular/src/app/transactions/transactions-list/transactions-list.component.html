@@ -1,0 +1,17 @@
+<mat-accordion multi="true">
+  <mat-expansion-panel *ngFor="let transaction of transactions">
+    <mat-expansion-panel-header>
+      {{transaction.actionType}}
+    </mat-expansion-panel-header>
+    <p>{{transaction.actionType}}</p>
+    <p>{{transaction.price}}</p>
+    <p>{{transaction.date}}</p>
+    <p>{{transaction.commissions}}</p>
+    <p>{{transaction.description}}</p>
+    <mat-action-row>
+      <button mat-button color="primary">EDIT</button>
+      <button mat-button color="warn">DELETE</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<p class="info-text mat-body-1">No transactions found.</p>
