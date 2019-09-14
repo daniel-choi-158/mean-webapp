@@ -8,3 +8,13 @@ block layout-content
                 h2 You must
                 h3 login below
             span.Details Please login below
+        div.NavButtons
+            a(href="/dashboard")
+                div.NavButton Go to Dashboard
+//-
+            if LoginSuccess
+                a(href="/dashboard")
+                    div.NavButton Return to session
+            else
+                a(href="/login")
+                    div.NavButton Log in
