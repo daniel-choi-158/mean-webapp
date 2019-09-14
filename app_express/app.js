@@ -3,6 +3,9 @@ var createError = require('http-errors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
+//load secrets
+require('dotenv').config();
 // Firebase App (the core Firebase SDK) is always required and
 // must be listed before other Firebase SDKs
 var firebase = require("firebase/app");
@@ -35,7 +38,7 @@ app.use(cookieParser());
 
 //Add Firebase to app
 const firebaseConfig = {
-    apiKey: "AIzaSyCLKhCcCsYaHD8dQwS3517wK90rAANifLM",
+    apiKey: process.env.FIREBASE_API_KEY,
     authDomain: "mean-webapp.firebaseapp.com",
     databaseURL: "https://mean-webapp.firebaseio.com",
     projectId: "mean-webapp",
