@@ -1,6 +1,7 @@
 export interface Transaction {
+  id: string;
   actionType: string;
-  shares: string;
+  symbol: string;
   quantity: string;
   price: string;
   date: string;

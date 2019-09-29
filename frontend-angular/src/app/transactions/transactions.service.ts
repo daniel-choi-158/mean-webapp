@@ -1,6 +1,7 @@
 import { Transaction } from './transaction.model';
 import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({providedIn: 'root'})
 export class TransactionsService {
@@ -8,8 +9,17 @@ export class TransactionsService {
   private transactions: Transaction[] = [];
   private transactionsUpdated = new Subject<Transaction[]>();
 
+  constructor(private http: HttpClient) { }
+
   getTransactions() {
-    return [...this.transactions];
+    this.http
+      .get<{ message: string; transactions: Transaction[] }>(
+        'http://localhost:3000/api/transactions'
+      )
+      .subscribe(transactionData => {
+        this.transactions = transactionData.transactions;
+        this.transactionsUpdated.next([...this.transactions]);
+      });
   }
 
   getTransactionUpdateListener() {

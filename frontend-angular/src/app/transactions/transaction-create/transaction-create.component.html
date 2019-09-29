@@ -15,12 +15,23 @@
           <textarea
           matInput
           type="text"
-          name="shares"
-          placeholder="Number of shares"
+          name="symbol"
+          placeholder="Symbol of the instrument"
           ngModel
           required
-          #shares="ngModel"></textarea>
-          <mat-error *ngIf="shares.invalid">Please enter valid input.</mat-error>
+          #symbol="ngModel"></textarea>
+          <mat-error *ngIf="symbol.invalid">Please enter valid input.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea
+          matInput
+          type="text"
+          name="quantity"
+          placeholder="Quantity"
+          ngModel
+          required
+          #quantity="ngModel"></textarea>
+          <mat-error *ngIf="quantity.invalid">Please enter valid input.</mat-error>
         </mat-form-field>
         <mat-form-field>
           <textarea

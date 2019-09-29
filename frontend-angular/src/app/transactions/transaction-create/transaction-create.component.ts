@@ -10,8 +10,9 @@ import { Transaction } from '../transaction.model';
   styleUrls: ['./transaction-create.component.css']
 })
 export class TransactionCreateComponent {
+  enteredQuantity = '';
   enteredActionType = '';
-  enteredShares = '';
+  enteredsymbol = '';
   enteredPrice = '';
   enteredDate = '';
   enteredCommissions = '';
@@ -24,8 +25,10 @@ export class TransactionCreateComponent {
       return;
     }
     const transaction: Transaction = {
+      id: form.value.transaction,
       actionType: form.value.actionType,
-      shares: form.value.shares,
+      quantity: form.value.quantity,
+      symbol: form.value.symbol,
       price: form.value.price,
       date: form.value.date,
       commissions: form.value.commissions,
