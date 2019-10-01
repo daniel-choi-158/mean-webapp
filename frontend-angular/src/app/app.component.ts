@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { Transaction } from './transactions/transaction.model';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

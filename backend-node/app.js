@@ -1,7 +1,17 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const firestore = require('@google-cloud/firestore');
 
 const app = express();
+const db = new firestore({
+    projectId: 'abacus-mean',
+    keyFilename: '../secrets/credentials-abacus-owner.json',
+  });
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+//CORS
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
@@ -13,7 +23,16 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/api/transactions', (req, res, next) => {
+app.post('/api/transactions', (req, res, next) => {
+    const transaction = req.body;
+    console.log(transaction);
+    res.status(201).json({
+        message: "Successfully added new transaction.",
+        transaction: transaction
+    });
+});
+
+app.get('/api/transactions', (req, res, next) => {
     const transactions =
         [
             {
@@ -37,7 +56,6 @@ app.use('/api/transactions', (req, res, next) => {
                 description: " trans 2"
             }         
         ];
-
     res.status(200).json({
         message: "Successfully retrieved transactions.",
         transactions: transactions

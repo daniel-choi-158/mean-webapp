@@ -27,7 +27,11 @@ export class TransactionsService {
   }
 
   addTransaction(transaction: Transaction) {
-    this.transactions.push(transaction);
-    this.transactionsUpdated.next([...this.transactions]);
+    this.http.post<{ message: string }>('http://localhost:3000/api/transactions', transaction)
+      .subscribe((responseData) => {
+        console.log(responseData.message);
+        this.transactions.push(transaction);
+        this.transactionsUpdated.next([...this.transactions]);
+      });
   }
 }
