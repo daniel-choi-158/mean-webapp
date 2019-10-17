@@ -26,4 +26,8 @@ export class TransactionListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.transactionsSub.unsubscribe();
   }
+
+  onDelete(transactionID: string) {
+    this.transactionsService.deleteTransaction(transactionID);
+  }
 }

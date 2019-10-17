@@ -9,22 +9,26 @@ import {
   MatButtonModule,
   MatToolbarModule,
   MatExpansionModule,
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { TransactionCreateComponent } from './transactions/transaction-create/transaction-create.component';
 import { TransactionListComponent } from './transactions/transactions-list/transactions-list.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     TransactionCreateComponent,
     HeaderComponent,
-    TransactionListComponent,
+    TransactionListComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     MatInputModule,
@@ -32,9 +36,13 @@ import { TransactionListComponent } from './transactions/transactions-list/trans
     MatButtonModule,
     MatToolbarModule,
     MatExpansionModule,
-    HttpClientModule
+    MatSelectModule,
+    HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

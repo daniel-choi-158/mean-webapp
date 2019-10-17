@@ -1,84 +1,98 @@
 <mat-card>
-  <form (submit)="onAddTransaction(postTransaction)" #postTransaction="ngForm">
-      <mat-form-field>
-          <input
-          matInput
-          type="text"
-          name="actionType"
-          placeholder="Action type"
-          ngModel
-          required
-          #actionType="ngModel">
-          <mat-error *ngIf="actionType.invalid">Please enter valid input.</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <textarea
-          matInput
-          type="text"
-          name="symbol"
-          placeholder="Symbol of the instrument"
-          ngModel
-          required
-          #symbol="ngModel"></textarea>
-          <mat-error *ngIf="symbol.invalid">Please enter valid input.</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <textarea
-          matInput
-          type="text"
-          name="quantity"
-          placeholder="Quantity"
-          ngModel
-          required
-          #quantity="ngModel"></textarea>
-          <mat-error *ngIf="quantity.invalid">Please enter valid input.</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <textarea
-          matInput
-          type="text"
-          name="price"
-          placeholder="Price"
-          ngModel
-          required
-          #price="ngModel"></textarea>
-          <mat-error *ngIf="price.invalid">Please enter valid input.</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <textarea
-          matInput
-          type="text"
-          name="date"
-          placeholder="Date"
-          ngModel
-          required
-          #date="ngModel"></textarea>
-          <mat-error *ngIf="date.invalid">Please enter valid input.</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <textarea
-          matInput
-          type="text"
-          name="commissions"
-          placeholder="Commissions paid"
-          ngModel
-          required
-          #commissions="ngModel"></textarea>
-          <mat-error *ngIf="commissions.invalid">Please enter valid input.</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <textarea
-          matInput
-          type="text"
-          name="description"
-          placeholder="Description of transaction"
-          ngModel
-          #description="ngModel"></textarea>
-          <mat-error *ngIf="description.invalid">Please enter valid input.</mat-error>
-        </mat-form-field>
-        <button
-        mat-raised-button
-        color="accent"
-        type="submit">Save Transaction</button>
+  <form (submit)="onSaveTransaction(postTransaction)" #postTransaction="ngForm">
+    <mat-form-field appearance="outline">
+      <mat-select
+        name="actionType"
+        placeholder="Action type"
+        [ngModel]="transaction?.actionType"
+        required
+        #actionType="ngModel"
+      >
+        <mat-option value="Buy">Buy</mat-option>
+        <mat-option value="Sell">Sell</mat-option>
+      </mat-select>
+      <mat-error *ngIf="actionType.invalid">Please select an action.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        type="text"
+        name="symbol"
+        placeholder="Symbol of the instrument"
+        [ngModel]="transaction?.symbol"
+        required
+        #symbol="ngModel"
+      />
+      <mat-error *ngIf="symbol.invalid">Please enter valid input.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        type="number"
+        name="quantity"
+        placeholder="Quantity"
+        [ngModel]="transaction?.quantity"
+        required
+        #quantity="ngModel"
+      />
+      <mat-error *ngIf="quantity.invalid">Please enter valid input.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        type="number"
+        name="price"
+        placeholder="Price"
+        [ngModel]="transaction?.price"
+        required
+        #price="ngModel"
+      />
+      <span matPrefix>$&nbsp;</span>
+      <mat-error *ngIf="price.invalid">Please enter valid input.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input
+      matInput
+      [matDatepicker]="picker"
+      type="text"
+      name="date"
+      placeholder="Date"
+      [ngModel]="transaction?.date"
+      required
+      #date="ngModel"/>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="date.invalid">Please enter valid input.</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        type="number"
+        name="commissions"
+        placeholder="Commissions paid"
+        [ngModel]="transaction?.commissions"
+        required
+        #commissions="ngModel"
+      />
+      <mat-error *ngIf="commissions.invalid"
+        >Please enter valid input.</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        type="text"
+        name="description"
+        placeholder="Description of transaction"
+        [ngModel]="transaction?.description"
+        #description="ngModel"
+      />
+      <mat-error *ngIf="description.invalid"
+        >Please enter valid input.</mat-error
+      >
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="submit">
+      Save Transaction
+    </button>
   </form>
 </mat-card>

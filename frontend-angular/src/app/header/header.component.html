@@ -1,1 +1,9 @@
-<mat-toolbar color="primary">Abacus</mat-toolbar>
+<mat-toolbar color="primary">
+  <span><a routerLink="/">Abacus</a></span>
+  <span class="spacer"></span>
+  <ul>
+    <li>
+      <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Transaction</a>
+    </li>
+  </ul>
+</mat-toolbar>

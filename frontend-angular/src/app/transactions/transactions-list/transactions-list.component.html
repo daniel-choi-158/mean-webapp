@@ -11,8 +11,8 @@
     <p>{{transaction.commissions}}</p>
     <p>{{transaction.description}}</p>
     <mat-action-row>
-      <button mat-button color="primary">EDIT</button>
-      <button mat-button color="warn">DELETE</button>
+      <a mat-button color="primary" [routerLink]="['/edit',transaction.id]">EDIT</a>
+      <button mat-button color="warn" (click)="onDelete(transaction.id)">DELETE</button>
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
