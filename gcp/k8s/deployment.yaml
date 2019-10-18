@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: mean-webapp-frontend-angular
-        image: docker pull gcr.io/abacus-mean/daniel-choi-158/mean-webapp-frontend-angular:latest
+        image: gcr.io/abacus-mean/daniel-choi-158/mean-webapp-frontend-angular:latest
         resources:
           limits:
             memory: "128Mi"
@@ -22,7 +22,7 @@ spec:
         ports:
         - containerPort: 4200
       - name: mean-webapp-backend-node
-        image: docker pull gcr.io/abacus-mean/daniel-choi-158/mean-webapp-backend-node:latest
+        image: gcr.io/abacus-mean/daniel-choi-158/mean-webapp-backend-node:latest
         resources:
           limits:
             memory: "128Mi"
