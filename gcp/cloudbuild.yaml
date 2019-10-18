@@ -6,7 +6,8 @@ steps:
   entrypoint: 'bash'
   args: [
    '-c', 
-   'docker pull gcr.io/$PROJECT_ID/<app-name>:latest'
+   'docker pull gcr.io/abacus-mean/daniel-choi-158/mean-webapp-backend-node:latest',
+   'docker pull gcr.io/abacus-mean/daniel-choi-158/mean-webapp-frontend-angular:latest'
   ]
 
 #step 2
