@@ -11,7 +11,7 @@ var moment = require('moment');
 const app = express();
 const db = new firestore({
   projectId: "abacus-mean",
-  keyFilename: "./secrets/credentials-abacus-owner.json"
+  keyFilename: "../secrets/credentials-abacus-owner.json"
 });
 
 app.use(bodyParser.json());
