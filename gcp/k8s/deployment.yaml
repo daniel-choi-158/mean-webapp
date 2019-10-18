@@ -1,20 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  run: myapp
-  name: myapp
+  name: mean-webapp
 spec:
   replicas: 2
   selector:
     matchLabels:
-      run: myapp
+      app: mean-webapp
   template:
     metadata:
       labels:
-        run: myapp
+        app: mean-webapp
     spec:
       containers:
-      - name: myapp
+      - name: mean-webapp-frontend-angular
         image: docker pull gcr.io/abacus-mean/daniel-choi-158/mean-webapp-frontend-angular:latest
         resources:
           limits:
@@ -22,3 +21,11 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 4200
+      - name: mean-webapp-backend-node
+        image: docker pull gcr.io/abacus-mean/daniel-choi-158/mean-webapp-backend-node:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000

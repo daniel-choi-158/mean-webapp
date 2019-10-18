@@ -36,24 +36,26 @@ steps:
 - name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'k8s/']
   env:
-  - 'CLOUDSDK_COMPUTE_ZONE=<cluster-zone>'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=<cluster-name>'
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster'
 
 #step 4
 # update deployed app image in GKE with the latest version of the image
-- name: 'gcr.io/cloud-builders/kubectl'
-  args: [
-   'set', 
-   'image', 
-   'deployment', 
-   '<app-name>', 
-   '<app-name>=gcr.io/$PROJECT_ID/<app-name>:$BRANCH_NAME-$COMMIT_SHA'
-  ]
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=<cluster-zone>'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=<cluster-name>'
+#- name: 'gcr.io/cloud-builders/kubectl'
+#  args: [
+#   'set', 
+#   'image', 
+#   'deployment', 
+#   '<app-name>', 
+#   '<app-name>=gcr.io/$PROJECT_ID/<app-name>:$BRANCH_NAME-$COMMIT_SHA'
+#  ]
+#  env:
+#  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+#  - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster'
 # push images to Google Container Registry with tags
 images: [
-   'gcr.io/$PROJECT_ID/<app-name>:$BRANCH_NAME-$COMMIT_SHA',
-   'gcr.io/$PROJECT_ID/<app-name>:latest'
+  'gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-frontend-angular/:$SHORT_SHA',
+  'gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-frontend-angular/:latest',
+  'gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-backend-node/:$SHORT_SHA',
+  'gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-backend-node/:latest'
   ]
