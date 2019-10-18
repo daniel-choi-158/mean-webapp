@@ -1,0 +1,52 @@
+steps:
+#step 1
+# try to pull latest image of app we are trying to build in order to speed up image layering process
+# command '|| exit 0' is added in case docker pull returns an error, then error will be ignored and build would still continue.
+- name: 'gcr.io/cloud-builders/docker' 
+  entrypoint: 'bash'
+  args: [
+   '-c', 
+   'docker pull gcr.io/$PROJECT_ID/<app-name>:latest'
+  ]
+
+#step 2
+# build the docker image
+- name: gcr.io/cloud-builders/docker
+  args: [
+   'build', 
+   '-t', 
+   'gcr.io/$PROJECT_ID/<app-name>:$BRANCH_NAME-$COMMIT_SHA',
+   '-t', 
+   'gcr.io/$PROJECT_ID/<app-name>:latest',
+   '.'
+  ]
+
+#step 3
+# apply the config yamls that exist in k8s folder
+# kubectl will auto-create/update missing configs nad resouces in the cluster according to the yamls
+# be sure to specify default 'cluster-zone'
+# 'cluster-name' is name of cluster which was provided when cluster was created.
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'k8s/']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=<cluster-zone>'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=<cluster-name>'
+
+#step 4
+# update deployed app image in GKE with the latest version of the image
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: [
+   'set', 
+   'image', 
+   'deployment', 
+   '<app-name>', 
+   '<app-name>=gcr.io/$PROJECT_ID/<app-name>:$BRANCH_NAME-$COMMIT_SHA'
+  ]
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=<cluster-zone>'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=<cluster-name>'
+# push images to Google Container Registry with tags
+images: [
+   'gcr.io/$PROJECT_ID/<app-name>:$BRANCH_NAME-$COMMIT_SHA',
+   'gcr.io/$PROJECT_ID/<app-name>:latest'
+  ]
