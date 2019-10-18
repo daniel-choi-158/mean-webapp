@@ -15,7 +15,7 @@ steps:
 - name: gcr.io/cloud-builders/docker
   args:
     - 'build'
-    - '--tag=gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-frontend-angular/:$SHORT-SHA'
+    - '--tag=gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-frontend-angular/:$SHORT_SHA'
     - '--tag=gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-frontend-angular/:latest'
     - '--file=/frontend-angular/Dockerfile'
     - '.'
@@ -23,7 +23,7 @@ steps:
 - name: gcr.io/cloud-builders/docker
   args:
     - 'build'
-    - '--tag=gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-backend-node/:$SHORT-SHA'
+    - '--tag=gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-backend-node/:$SHORT_SHA'
     - '--tag=gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-backend-node/:latest'
     - '--file=/backend-node/Dockerfile'
     - '.'
