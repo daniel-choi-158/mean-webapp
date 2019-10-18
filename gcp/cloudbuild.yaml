@@ -54,8 +54,8 @@ steps:
 #  - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster'
 # push images to Google Container Registry with tags
 images: [
-  'gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-frontend-angular/:$SHORT_SHA',
-  'gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-frontend-angular/:latest',
-  'gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-backend-node/:$SHORT_SHA',
-  'gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-backend-node/:latest'
+  'gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-frontend-angular:$SHORT_SHA',
+  'gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-frontend-angular:latest',
+  'gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-backend-node:$SHORT_SHA',
+  'gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-backend-node:latest'
   ]
