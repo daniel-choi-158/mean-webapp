@@ -46,6 +46,7 @@ export class TransactionCreateComponent implements OnInit {
     if (form.invalid) {
       return;
     }
+    //id is left blank here, since it will be populated in backend
     const transaction: Transaction = {
       id: '',
       actionType: form.value.actionType,

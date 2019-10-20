@@ -1,19 +1,20 @@
 <mat-accordion multi="true">
   <mat-expansion-panel *ngFor="let transaction of transactions">
     <mat-expansion-panel-header>
-      {{transaction.actionType}}
+      <p class="bold"> {{transaction.date}} - {{transaction.actionType}} {{transaction.quantity}} {{transaction.symbol}} at {{transaction.price}}</p>
     </mat-expansion-panel-header>
-    <p>{{transaction.actionType}}</p>
-    <p>{{transaction.symbol}}</p>
-    <p>{{transaction.quantity}}</p>
-    <p>{{transaction.price}}</p>
-    <p>{{transaction.date}}</p>
-    <p>{{transaction.commissions}}</p>
-    <p>{{transaction.description}}</p>
+    <p><strong>Action type:</strong> {{transaction.actionType}}</p>
+    <p><strong>Symbol:</strong> {{transaction.symbol}}</p>
+    <p><strong>Quantity:</strong> {{transaction.quantity}}</p>
+    <p><strong>Price:</strong> {{transaction.price}}</p>
+    <p><strong>Action date:</strong> {{transaction.date}}</p>
+    <p><strong>Commissions paid:</strong> {{transaction.commissions}}</p>
+    <p><strong>Description:</strong> {{transaction.description}}</p>
+    <p><strong>Transaction ID:</strong> {{transaction.id}}</p>
     <mat-action-row>
       <a mat-button color="primary" [routerLink]="['/edit',transaction.id]">EDIT</a>
       <button mat-button color="warn" (click)="onDelete(transaction.id)">DELETE</button>
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
-<p class="info-text mat-body-1">No transactions found.</p>
+<p class="info-text mat-body-1" *ngIf="transactions.length==0">No transactions found.</p>

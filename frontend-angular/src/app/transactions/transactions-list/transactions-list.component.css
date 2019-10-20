@@ -5,4 +5,9 @@
 
 .info-text {
   text-align: center;
+  font-weight: bold;
+}
+
+.bold {
+  font-weight: bold;
 }

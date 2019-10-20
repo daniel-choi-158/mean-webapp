@@ -11,7 +11,8 @@ import {
   MatExpansionModule,
   MatSelectModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MAT_DATE_LOCALE
 } from '@angular/material';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -42,6 +43,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatNativeDateModule
   ],
   providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'en-AU'},
   ],
   bootstrap: [AppComponent]
 })
