@@ -58,7 +58,6 @@ app.post("/api/transactions", (req, res, next) => {
 
 app.put("/api/transactions/:id", (req, res, next) => {
   var sentdate = moment(req.body.date).toDate();
-
   const transaction = {
     id: req.body.id,
     actionType: req.body.actionType,
@@ -69,7 +68,6 @@ app.put("/api/transactions/:id", (req, res, next) => {
     commissions: req.body.commissions,
     description: req.body.description
   };
-
   let existingDoc = db.collection("transactions").doc(req.params.id)
     .update(transaction)
     .then(result => {
@@ -88,6 +86,9 @@ app.get("/api/transactions", (req, res, next) => {
       snapshot.forEach(doc => {
         results.push(doc.data());
       });
+      results.forEach(transaction => {
+        transaction.date = transaction.date.toDate();
+      });
       console.log(results);
       res.status(200).json({
         message: "Successfully retrieved transactions.",
@@ -98,22 +99,31 @@ app.get("/api/transactions", (req, res, next) => {
 
 
 app.get("/api/transactions/:id", (req, res, next) => {
-  let results = [];
+  //let results = [];
 
-  let query = db.collection("transactions").doc(req.params.id)
-    .then(snapshot => {
-      if (snapshot.empty) {
-        res.status(404).json({message: "ERROR: no documents with ID " + req.params.id + " not found!"});
-      } else {
-        snapshot.forEach(doc => {
-          results.push(doc.data);
-        });
+  let query = db.collection("transactions")
+    .doc(req.params.id)
+    .get()
+    .then(doc => {
+      if (doc.exists) {
+        //results.push(doc.data());
+        const transaction = {
+          id: doc.data().id,
+          actionType: doc.data().actionType,
+          symbol: doc.data().symbol,
+          quantity: doc.data().quantity,
+          price: doc.data().price,
+          date: doc.data().date.toDate(),
+          commissions: doc.data().commissions,
+          description: doc.data().description
+        };
         res.status(200).json({
-          transactions: results
+          transaction
         });
-      }
+      } else {
+        res.status(404).json({ message: "ERROR: no documents with ID " + req.params.id + " not found!" });
+      };
     });
-
 });
 
 app.delete("/api/transactions/:id", (req, res, next) => {

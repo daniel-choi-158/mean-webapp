@@ -2,6 +2,7 @@ import { Transaction } from './transaction.model';
 import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class TransactionsService {
@@ -19,7 +20,7 @@ export class TransactionsService {
     this.http
       .get<{ message: string; transactions: Transaction[] }>(
         'http://localhost:3000/api/transactions'
-      )
+    )
       .subscribe(transactionData => {
         this.transactions = transactionData.transactions;
         this.transactionsUpdated.next([...this.transactions]);
@@ -27,7 +28,8 @@ export class TransactionsService {
   }
 
   getTransaction(id: string) {
-    return this.http.get<Transaction>('http://localhost:3000/api/transactions/' + id);
+    //return this.http.get<{ transaction: Transaction }>('http://localhost:3000/api/transactions/' + id);
+    return this.http.get<{ transaction: Transaction }>('http://localhost:3000/api/transactions/' + id);
   }
 
   addTransaction(transaction: Transaction) {

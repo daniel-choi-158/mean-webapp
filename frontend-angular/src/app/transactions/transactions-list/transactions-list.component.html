@@ -1,14 +1,14 @@
 <mat-accordion multi="true">
   <mat-expansion-panel *ngFor="let transaction of transactions">
     <mat-expansion-panel-header>
-      <p class="bold"> {{transaction.date}} - {{transaction.actionType}} {{transaction.quantity}} {{transaction.symbol}} at {{transaction.price}}</p>
+      <p class="bold"> {{transaction.date | date : 'dd/MM/y' }} - {{transaction.actionType}} {{transaction.quantity}} {{transaction.symbol}} at {{transaction.price | currency: 'AUD'}}</p>
     </mat-expansion-panel-header>
     <p><strong>Action type:</strong> {{transaction.actionType}}</p>
     <p><strong>Symbol:</strong> {{transaction.symbol}}</p>
     <p><strong>Quantity:</strong> {{transaction.quantity}}</p>
-    <p><strong>Price:</strong> {{transaction.price}}</p>
-    <p><strong>Action date:</strong> {{transaction.date}}</p>
-    <p><strong>Commissions paid:</strong> {{transaction.commissions}}</p>
+    <p><strong>Price:</strong> {{transaction.price | currency: 'AUD'}}</p>
+    <p><strong>Action date:</strong> {{transaction.date | date : 'dd/MM/y' }}</p>
+    <p><strong>Commissions paid:</strong> {{transaction.commissions | currency: 'AUD'}}</p>
     <p><strong>Description:</strong> {{transaction.description}}</p>
     <p><strong>Transaction ID:</strong> {{transaction.id}}</p>
     <mat-action-row>

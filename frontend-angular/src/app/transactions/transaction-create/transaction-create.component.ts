@@ -25,15 +25,15 @@ export class TransactionCreateComponent implements OnInit {
           this.transactionID = paramMap.get('transactionID');
           this.transactionService.getTransaction(this.transactionID).subscribe(transactionData => {
             this.transaction = {
-              id: transactionData.id,
-              actionType: transactionData.actionType,
-              quantity: transactionData.quantity,
-              symbol: transactionData.symbol,
-              price: transactionData.price,
-              date: transactionData.date,
-              commissions: transactionData.commissions,
-              description: transactionData.description
-            }
+              id: transactionData.transaction.id,
+              actionType: transactionData.transaction.actionType,
+              quantity: transactionData.transaction.quantity,
+              symbol: transactionData.transaction.symbol,
+              price: transactionData.transaction.price,
+              date: transactionData.transaction.date,
+              commissions: transactionData.transaction.commissions,
+              description: transactionData.transaction.description
+            };
           });
         } else {
           this.mode = 'create';
@@ -46,9 +46,8 @@ export class TransactionCreateComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    //id is left blank here, since it will be populated in backend
     const transaction: Transaction = {
-      id: '',
+      id: this.transactionID,
       actionType: form.value.actionType,
       quantity: form.value.quantity,
       symbol: form.value.symbol,
