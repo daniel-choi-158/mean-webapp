@@ -1,18 +1,19 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const dotenv = require('dotenv');
 const firestore = require("@google-cloud/firestore");
 const uuid = require("uuid/v1");
-const mongoose = require("mongoose");
+//const mongoose = require("mongoose");
 var moment = require('moment');
 
 //data models
-const Transaction = require("./models/transaction");
+//const Transaction = require("./models/transaction");
 
 const app = express();
-dotenv.config({path:'./secrets/config.env'});
-const db = mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@abacus-mongodb-qhcva.gcp.mongodb.net/test?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true })
-.catch(error => handleError(error));
+const db = new firestore({
+  projectId: "abacus-mean",
+  keyFilename: "../secrets/credentials-abacus-owner.json"
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -32,18 +33,28 @@ app.use((req, res, next) => {
 
 //ROUTES: Transaction
 app.post("/api/transactions", (req, res, next) => {
-    var sentdate = moment(req.body.date).toDate();
-    var fluffy = new Transaction({
-        id: req.body.symbol,
-        actionType: req.body.actionType,
-        symbol: req.body.symbol,
-        quantity: req.body.quantity,
-        price: req.body.price,
-        date: sentdate,
-        commissions: req.body.commissions,
-        description: req.body.description
+  var sentdate = moment(req.body.date).toDate();
+
+  const transaction = {
+    //id: uuid(),
+    id: req.body.symbol,
+    actionType: req.body.actionType,
+    symbol: req.body.symbol,
+    quantity: req.body.quantity,
+    price: req.body.price,
+    date: sentdate,
+    commissions: req.body.commissions,
+    description: req.body.description
+  };
+  db.collection("transactions")
+    .doc(transaction.id)
+    .set(transaction)
+    .then(setDoc => {
+      res.status(201).json({
+        message: "Successfully added new transaction with ID " + transaction.id,
+        transactionID: transaction.id
+      });
     });
-    
 });
 
 app.put("/api/transactions/:id", (req, res, next) => {

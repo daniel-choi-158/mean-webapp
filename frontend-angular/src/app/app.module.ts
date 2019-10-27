@@ -12,20 +12,24 @@ import {
   MatSelectModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MAT_DATE_LOCALE
+  MAT_DATE_LOCALE,
+  MatMenuModule
 } from '@angular/material';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { TransactionCreateComponent } from './transactions/transaction-create/transaction-create.component';
 import { TransactionListComponent } from './transactions/transactions-list/transactions-list.component';
+import { HoldingListComponent } from './holdings/holdings-list/holdings-list.component';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TransactionCreateComponent,
     HeaderComponent,
-    TransactionListComponent
+    TransactionCreateComponent,
+    TransactionListComponent,
+    HoldingListComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,8 @@ import { AppRoutingModule } from './app-routing.module';
     MatSelectModule,
     HttpClientModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatMenuModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'en-AU'},

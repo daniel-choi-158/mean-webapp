@@ -27,6 +27,7 @@
     "angular": "^1.7.8",
     "body-parser": "^1.19.0",
     "currency.js": "^1.2.2",
+    "dotenv": "^8.2.0",
     "duplexify": "^4.1.1",
     "finalhandler": "^1.1.2",
     "hammerjs": "^2.0.8",

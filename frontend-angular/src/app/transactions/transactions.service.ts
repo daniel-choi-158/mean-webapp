@@ -28,7 +28,6 @@ export class TransactionsService {
   }
 
   getTransaction(id: string) {
-    //return this.http.get<{ transaction: Transaction }>('http://localhost:3000/api/transactions/' + id);
     return this.http.get<{ transaction: Transaction }>('http://localhost:3000/api/transactions/' + id);
   }
 

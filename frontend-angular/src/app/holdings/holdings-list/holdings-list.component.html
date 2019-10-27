@@ -1,0 +1,9 @@
+<mat-accordion multi="true">
+  <mat-expansion-panel *ngFor="let holding of holdings">
+    <mat-expansion-panel-header>
+      <p class="bold"> {{holding.symbol}}</p>
+    </mat-expansion-panel-header>
+    <p><strong>Symbol:</strong> {{holding.symbol}}</p>
+  </mat-expansion-panel>
+</mat-accordion>
+<p class="info-text mat-body-1" *ngIf="holdings.length==0">No holdings found.</p>

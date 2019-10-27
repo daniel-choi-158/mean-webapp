@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Transaction } from '../transaction.model';
 import { TransactionsService } from '../transactions.service';
 
+
 @Component({
   selector: 'app-transaction-list',
   templateUrl: './transactions-list.component.html',
