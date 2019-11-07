@@ -34,24 +34,24 @@ steps:
 # be sure to specify default 'cluster-zone'
 # 'cluster-name' is name of cluster which was provided when cluster was created.
 - name: 'gcr.io/cloud-builders/kubectl'
-  args: ['apply', '-f', './gcp/k8s/']
+  args: ['apply', '-f', './k8s/']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster2'
 
 #step 4
 # update deployed app image in GKE with the latest version of the image
-#- name: 'gcr.io/cloud-builders/kubectl'
-#  args: [
-#   'set', 
-#   'image', 
-#   'deployment', 
-#   '<app-name>', 
-#   '<app-name>=gcr.io/$PROJECT_ID/<app-name>:$BRANCH_NAME-$COMMIT_SHA'
-#  ]
-#  env:
-#  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-#  - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster'
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: [
+   'set', 
+   'image', 
+   'deployment', 
+   '<app-name>', 
+   '<app-name>=gcr.io/$PROJECT_ID/<app-name>:$BRANCH_NAME-$COMMIT_SHA'
+  ]
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster'
 # push images to Google Container Registry with tags
 images: [
   'gcr.io/$PROJECT_ID/daniel-choi-158/mean-webapp-frontend-angular:$SHORT_SHA',
